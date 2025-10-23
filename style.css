@@ -1,7 +1,7 @@
-/* --- 1. Визначення CSS Змінних (var) --- */
+
 :root {
-    --primary-color: #3498db;  /* Основний колір (синій) */
-    --secondary-color: #ecf0f1; /* Другорядний колір (світло-сірий) */
+    --primary-color: #3498db;
+    --secondary-color: #ecf0f1;
     --text-color: #333;
     --light-text-color: #fff;
     --border-color: #bdc3c7;
@@ -11,16 +11,12 @@
     --spacing-large: 2rem;    /* 32px */
 }
 
-/* --- 2. Базові стилі (Mobile-First підхід) --- */
-/* Ми починаємо з найменшого екрану (наприклад, 375px). 
-   Тут все розташовано вертикально (блоками).
-*/
 * {
-    box-sizing: border-box; /* Важливо для гнучких макетів */
+    box-sizing: border-box;
 }
 
 html {
-    font-size: 16px; /* Базовий розмір шрифту */
+    font-size: 16px;
 }
 
 body {
@@ -31,12 +27,10 @@ body {
 }
 
 img {
-    max-width: 100%; /* Робить зображення респонсивними */
+    max-width: 100%; 
     height: auto;
     display: block;
 }
-
-/* --- 3. Стилі для окремих блоків (Mobile-First) --- */
 
 .site-header, .site-footer {
     background-color: var(--primary-color);
@@ -53,7 +47,6 @@ img {
     list-style: none;
     padding: 0;
     margin: 0;
-    /* На мобільних: робимо меню вертикальним */
     display: flex;
     flex-direction: column;
 }
@@ -75,24 +68,21 @@ img {
     background-color: #555;
 }
 
-/* Контейнер, головний контент та бічна панель */
 .container {
     padding: var(--spacing-medium);
-    /* На мобільних пристроях гнучкий контейнер не потрібен, 
-       main та aside просто йдуть один за одним */
 }
 
 .main-content {
-    width: 100%; /* Займає всю ширину */
+    width: 100%;
     padding: var(--spacing-medium);
     background-color: #fff;
 }
 
 .sidebar {
-    width: 100%; /* Займає всю ширину */
+    width: 100%;
     padding: var(--spacing-medium);
     background-color: var(--secondary-color);
-    margin-top: var(--spacing-medium); /* Відступ між блоками на мобільному */
+    margin-top: var(--spacing-medium); 
 }
 
 /* --- 4. Медіа-Запити (Адаптація до більших екранів) --- */
