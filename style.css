@@ -1,0 +1,148 @@
+/* --- 1. Визначення CSS Змінних (var) --- */
+:root {
+    --primary-color: #3498db;  /* Основний колір (синій) */
+    --secondary-color: #ecf0f1; /* Другорядний колір (світло-сірий) */
+    --text-color: #333;
+    --light-text-color: #fff;
+    --border-color: #bdc3c7;
+    
+    --spacing-small: 0.5rem;  /* 8px */
+    --spacing-medium: 1rem;   /* 16px */
+    --spacing-large: 2rem;    /* 32px */
+}
+
+/* --- 2. Базові стилі (Mobile-First підхід) --- */
+/* Ми починаємо з найменшого екрану (наприклад, 375px). 
+   Тут все розташовано вертикально (блоками).
+*/
+* {
+    box-sizing: border-box; /* Важливо для гнучких макетів */
+}
+
+html {
+    font-size: 16px; /* Базовий розмір шрифту */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%; /* Робить зображення респонсивними */
+    height: auto;
+    display: block;
+}
+
+/* --- 3. Стилі для окремих блоків (Mobile-First) --- */
+
+.site-header, .site-footer {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: var(--spacing-medium);
+}
+
+.site-nav {
+    background-color: #333;
+}
+
+.site-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* На мобільних: робимо меню вертикальним */
+    display: flex;
+    flex-direction: column;
+}
+
+.site-nav li a {
+    display: block;
+    padding: var(--spacing-medium);
+    text-decoration: none;
+    color: var(--light-text-color);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.site-nav li:last-child a {
+    border-bottom: none;
+}
+
+.site-nav li a:hover {
+    background-color: #555;
+}
+
+/* Контейнер, головний контент та бічна панель */
+.container {
+    padding: var(--spacing-medium);
+    /* На мобільних пристроях гнучкий контейнер не потрібен, 
+       main та aside просто йдуть один за одним */
+}
+
+.main-content {
+    width: 100%; /* Займає всю ширину */
+    padding: var(--spacing-medium);
+    background-color: #fff;
+}
+
+.sidebar {
+    width: 100%; /* Займає всю ширину */
+    padding: var(--spacing-medium);
+    background-color: var(--secondary-color);
+    margin-top: var(--spacing-medium); /* Відступ між блоками на мобільному */
+}
+
+/* --- 4. Медіа-Запити (Адаптація до більших екранів) --- */
+
+/* Планшети (наприклад, 768px і більше)
+   Тут ми змінюємо макет: контент і бічна панель стають в один ряд.
+*/
+@media (min-width: 768px) {
+    .container {
+        display: flex; /* Вмикаємо Flexbox */
+        flex-wrap: wrap; /* Дозволяємо перенос */
+        justify-content: space-between;
+    }
+
+    .main-content {
+        /* Використовуємо calc() для гнучкості.
+           100% - 30% (ширина бічної панелі) - 1rem (відступ) 
+        */
+        width: calc(70% - var(--spacing-medium));
+    }
+
+    .sidebar {
+        width: 30%;
+        margin-top: 0; /* Прибираємо відступ зверху */
+    }
+
+    /* Робимо навігацію горизонтальною */
+    .site-nav ul {
+        flex-direction: row; /* Горизонтальний напрямок */
+        justify-content: center;
+    }
+    
+    .site-nav li a {
+        border-bottom: none; /* Прибираємо лінії */
+        border-right: 1px solid var(--border-color);
+    }
+
+    .site-nav li:last-child a {
+        border-right: none;
+    }
+}
+
+/* Великі десктопи (наприклад, 1024px і більше)
+   Ми можемо просто обмежити ширину контейнера, щоб сайт 
+   не "розповзався" на дуже широких моніторах.
+*/
+@media (min-width: 1024px) {
+    .container, .site-header, .site-nav, .site-footer {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
